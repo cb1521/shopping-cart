@@ -41,17 +41,23 @@ def to_usd(my_price):
 
 #print(products)
 total_price= 0
+purchased_products= []
 #user inputs
 while True:
     selected_id= input("Please input a product identifier: ")
     if selected_id == "done":
         break #escaping the loop once cashier is done
-    else:
-        matching_products = [p for p in products if str(p["id"]) == str(selected_id)] #making sure that the data types are the same
-        matching_product = matching_products[0]
-        total_price= total_price + matching_product["price"] #iteratively adding the total price
-        print(matching_product["name"] + " " + str(matching_product["price"]))
+    else:  #if selected_id == products["id"]:
+        purchased_products.append(selected_id)
     #else:
         #print("Please enter a valid identifier, or type "done" if there are no more items to identify!")
+
+
+
+for selected_id in purchased_products:
+    matching_products = [p for p in products if str(p["id"]) == str(selected_id)] #making sure that the data types are the same
+    matching_product = matching_products[0]
+    total_price= total_price + matching_product["price"] #iteratively adding the total price
+    print(matching_product["name"] + " " + str(matching_product["price"]))
 
 print("Total Price:", to_usd(total_price))
