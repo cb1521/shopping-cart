@@ -42,15 +42,19 @@ def to_usd(my_price):
 
 #print(products)
 print("Enter every item with its identifier. Once done, type the word done in all lowercase.")
-total_price= 0
-purchased_products= []
-now= datetime.datetime.now()
+total_price= 0 #setting up a variable for price
+id_list= []
+purchased_products= [] #establishing a list to store the product identifiers in
+now= datetime.datetime.now() #defining a variable to display the date and time
 #user inputs
+for x in products:
+    id_list.append(str(x["id"]))
+print(id_list)
 while True:
     selected_id= input("Please input a product identifier: ")
     if selected_id == "done":
         break #escaping the loop once cashier is done
-    elif selected_id in str(range(1, 21)): #part of data validation, need to convert string to integer
+    elif selected_id in id_list:
         purchased_products.append(selected_id)
     else: #dealing with invalid inputs
         print("Make sure you have a valid identifier, and try again!") 
