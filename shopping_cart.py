@@ -1,5 +1,6 @@
 # shopping_cart.py
 
+import datetime #to display the date and time on the receipt
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -40,8 +41,10 @@ def to_usd(my_price):
 # TODO: write some Python code here to produce the desired output
 
 #print(products)
+print("Enter every item with its identifier. Once done, type the word done in all lowercase.")
 total_price= 0
 purchased_products= []
+now= datetime.datetime.now()
 #user inputs
 while True:
     selected_id= input("Please input a product identifier: ")
@@ -50,16 +53,29 @@ while True:
     elif 1<=int(selected_id)<=20: #part of data validation, need to convert string to integer
         purchased_products.append(selected_id)
     else: #dealing with invalid inputs
-        print("Please enter a valid identifier!") 
+        print("Make sure you have a valid identifier, and try again!") 
 
 
+#printing the receipt
+
+print("---------------------------------")
+print("McDonough Store of Buyables")
+print("www.mcdonoughstore.com")
+print("---------------------------------")
+print("Checkout at:", now.strftime("%Y-%m-%d %I:%M %p"))
+print("---------------------------------")
+print("Selected Products:")
 
 for selected_id in purchased_products:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)] #making sure that the data types are the same
     matching_product = matching_products[0]
     total_price= total_price + matching_product["price"] #iteratively adding the total price
-    print(matching_product["name"] + " " + (str(to_usd(matching_product["price"]))))
+    print("+", matching_product["name"] + " ... " + (str(to_usd(matching_product["price"]))))
 
+print("---------------------------------")
 print("Subtotal:", to_usd(total_price))
-print ("Tax:", to_usd(total_price*0.0875))
+print ("NY State Tax:", to_usd(total_price*0.0875))
 print("Total Price:", to_usd(total_price*1.0875))
+print("---------------------------------")
+print("Thank you, have a great day!")
+print("---------------------------------")
