@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# ignore the ".env" file, which may contain secret credentials we don't want to get uploaded to GitHub
+.env
