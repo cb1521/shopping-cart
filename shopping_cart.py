@@ -50,7 +50,7 @@ while True:
     selected_id= input("Please input a product identifier: ")
     if selected_id == "done":
         break #escaping the loop once cashier is done
-    elif 1<=int(selected_id)<=20: #part of data validation, need to convert string to integer
+    elif selected_id in str(range(1, 21)): #part of data validation, need to convert string to integer
         purchased_products.append(selected_id)
     else: #dealing with invalid inputs
         print("Make sure you have a valid identifier, and try again!") 
