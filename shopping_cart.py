@@ -6,6 +6,7 @@ import dotenv
 dotenv.load_dotenv()  #setting up an environment variable
 
 tax = os.getenv("TAX_RATE", default=0.0875) #defining a variable relating to the environment variable
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -53,7 +54,7 @@ purchased_products= [] #establishing a list to store the product identifiers in
 now= datetime.datetime.now() #defining a variable to display the date and time
 #user inputs
 for x in products:
-    id_list.append(str(x["id"]))
+    id_list.append(str(x["id"])) #to create a current list of all product ID's in the system for data validation purposes
 while True:
     selected_id= input("Please input a product identifier: ")
     if selected_id == "done":
@@ -70,7 +71,7 @@ print("---------------------------------")
 print("McDonough Store of Buyables")
 print("www.mcdonoughstore.com")
 print("---------------------------------")
-print("Checkout at:", now.strftime("%Y-%m-%d %I:%M %p"))
+print("Checkout at:", now.strftime("%Y-%m-%d %I:%M %p")) #current date and time
 print("---------------------------------")
 print("Selected Products:")
 
@@ -82,7 +83,7 @@ for selected_id in purchased_products:
 
 print("---------------------------------")
 print("Subtotal:", to_usd(total_price))
-print ("NY State Tax:", to_usd(total_price*float(tax))) #using the environment variable to have a flexible tax rate
+print ("Tax:", to_usd(total_price*float(tax))) #using the environment variable to have a flexible tax rate
 print("Total Price:", to_usd(total_price*(1+float(tax))))
 print("---------------------------------")
 print("Thank you, have a great day!")
